@@ -1,0 +1,37 @@
+dependencies: \
+  /Users/arcranges/Desktop/CourseHelper/ios/CourseHelper/AppDelegate.m \
+  /Users/arcranges/Desktop/CourseHelper/ios/CourseHelper/AppDelegate.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/Firebase/Core/Sources/module.modulemap \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBundleURLProvider.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Modules/module.modulemap \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Modules/module.modulemap \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIROptions.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRLoggerLevel.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRConfiguration.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRApp.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRCoreSwiftNameSupport.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FIRAnalyticsConfiguration.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FirebaseCore.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRUserPropertyNames.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRParameterNames.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIREventNames.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRAnalyticsSwiftNameSupport.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRAnalytics.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRAnalytics+AppDelegate.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIROptions.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRConfiguration.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRApp.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FIRAnalyticsConfiguration.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework/Headers/FirebaseAnalytics.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework/Modules/module.modulemap \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework/Headers/FIRInstanceID.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework/Headers/FirebaseInstanceID.h \
+  /Users/arcranges/Desktop/CourseHelper/ios/Pods/Firebase/Core/Sources/Firebase.h
