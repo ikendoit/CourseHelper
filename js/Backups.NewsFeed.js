@@ -1,8 +1,19 @@
 import React from 'react';
-import {ListView, Image, ScrollView, Text, StyleSheet, View, ActivityIndicator, AsyncStorage,} from 'react-native';
+import {Text, StyleSheet, View, ActivityIndicator, AsyncStorage,} from 'react-native';
 import {
   Button, Icon
 } from 'react-native-elements';
+
+import * as firebase from 'firebase';
+
+//const firebaseConfig = {
+//    apiKey: "AIzaSyA881FOyVulJ9uou8zAetJF-DZ16O2skXE",
+//    authDomain: "coursebackend1.firebaseapp.com",
+//    databaseURL: "https://coursebackend1.firebaseio.com",
+//    storageBucket: "coursebackend1.appspot.com",
+//    persistence: true
+//};
+//const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export default class Introduction extends React.Component {
 
@@ -11,6 +22,7 @@ export default class Introduction extends React.Component {
     this.state = { 
         loaded : false 
     }
+    //this.itemsRef = firebaseApp.database().ref();
   }
     
   static navigationOptions = ({navigation}) => ({
@@ -24,6 +36,7 @@ export default class Introduction extends React.Component {
     this.fetchData();
   }
 
+  // retrieve deparments data from the firebase server
   fetchData() {
 	let data = [];
 	let news = [];
@@ -60,27 +73,47 @@ export default class Introduction extends React.Component {
 			console.log("error this" +error);
 		});
 	}
+	//let data=[];
+    //this.itemsRef.on('value',(snap)=> {
+    //  /* loop for each value retrieved, then pushed to data array */
+    //  // each "child" is a json: dept + courses
+    //  snap.forEach((child) => {
+    //    data.push({
+    //      dept: child.val().dept,
+    //      courses: child.val().courses
+    //    });
+    //  });
+    //  /* update view state 
+    //     put list of objects (dept & courses) in state: dpts
+    //  */  
+
+    //  this.setState({
+    //    //done loading
+    //    loaded: true,
+    //  });
+
+    //  if (data.length > 2) {
+    //      console.log("updated data, Welcome Boss");
+    //      AsyncStorage.setItem("data",JSON.stringify(data));
+    //  }
+    //});
+  //}
 
   // this function shows news from a data array
   showNews() {
     let data = [];
 	let curNews = this.state.news;
-    for (let i = 0; i < curNews.length; i++) {
+    for (let i = 0; i < curNews; i++) {
       data.push(
         <View key={i}>
           <Text style={introStyles.title}>{curNews[i].title}</Text>
+          <Text style={introStyles.moreInfo}>{curNews[i].img}</Text>
+          <Text style={introStyles.moreIngo}>{curNews[i].link}</Text>
         </View>
       );
     }
-		
-	return data;
-		
-    //return (
-	//	<ListView
-	//		dataSource={curNews}
-	//		renderRow={(rowData) => <Text>{RowData.title} </Text> }
-	//	/>
-	//);
+    return data;
+	console.log(data);
   }
 
   // loading view while deparments are being pulled from the server
@@ -98,13 +131,15 @@ export default class Introduction extends React.Component {
   }
 
   render() {
+  	console.log("initializing ----- >>>>>");
     if (!this.state.loaded){
         return this.renderLoadingView();
     } else {
+	  console.log("trying to render");
       return (
-        <ScrollView>
+        <View>
           {this.showNews()} 
-        </ScrollView>
+        </View>
       );
     }
   }
@@ -123,11 +158,10 @@ const introStyles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    color: 'black',
-    fontSize: 14,
+    color: 'blue',
+    fontSize: 30,
+    fontWeight: 'bold',
     textAlign: 'center',
-	backgroundColor: '#93EF1D',
-	marginBottom: 10,
   },
   moreInfo: {
     textAlign: 'center',

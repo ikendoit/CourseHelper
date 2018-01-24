@@ -2,12 +2,16 @@ import React from 'react';
 import {
   Text,
   View,
-  Button,
   StyleSheet,
   Image,
   ScrollView,
   ActivityIndicator,
+  AsyncStorage,
+  TouchableHighlight,
 } from 'react-native';
+
+import {Button, Icon} from 'react-native-elements';
+
 
 // for styles and stuff
 import * as styles from './styles.js';
@@ -17,41 +21,98 @@ import * as Animatable from 'react-native-animatable';
 import Accordion from 'react-native-collapsible/Accordion';
 
 export default class CourseLister extends React.Component {
-  static navigationOptions = ({navigation}) => ({
-    headerStyle: {
-      /* F15A22 - orange */
-      backgroundColor: '#3f91f5'
-    },
-    headerTitle: `${navigation.state.params.dept}`,
-    title: "Departments",
-    headerTintColor: 'white',
-  });
+
+  static me = null;
+  static navigationOptions = ({navigation,screenProps}) => {
+	return { 
+		headerStyle: {
+		  /* F15A22 - orange */
+		  backgroundColor: '#3f91f5'
+		},
+	//	headerLeft : <Button style="margin-left:-30px" backgroundColor='rgba(200,0,0,0)' icon={{name: "chevron-left", size:30}} onPress={()=>navigation.goBack()} />,
+		headerTitle: `${navigation.state.params.dept}`,
+		title: "Courses",
+		headerTintColor: 'white',
+	}
+  };
   
   constructor(props, context) {  
     super(props, context);
     this.state = {
       loaded: false,
       activeSection: false,
-      collapsed: true,
     };
   }  
+
   // if the view has loaded fully, update state
   componentDidMount() {
     this.setState({
       loaded: true,
+      //load datas from departments JS
       data: this.props.navigation.state.params.coursesData,
       title: this.props.navigation.state.params.dept,
     });
   }
 
-  // Expands section
-  _toggleExpanded = () => {
-    this.setState({ collapsed: !this.state.collapsed });
+  componentWillMount(){
+  	me = this;
   }
-
+  
   // Sets section to 'expanded'
   _setSection(section) {
     this.setState({ activeSection: section });
+  }
+
+  //add course to fav async storage 
+  addFavs(id_sec) {
+  	/*generate json of favs : 
+		favs : 
+			name : string 
+			nums : []
+	*/
+  	AsyncStorage.getItem("favs").then((value)=>{ 
+		let favs = [];
+
+		//if storage is not empty 
+		if (value != null) {
+			favs=JSON.parse(value);
+		}
+
+		//boolean helps checking if course_id is stored
+		let contained = false;
+
+		//parse fav course id 
+		let id = id_sec.split(" -- ")[0];
+		let num = id_sec.split(" -- ")[1];
+
+		//check all stored 
+		for (miniFav of favs){
+			//if course_id already stored
+			if (miniFav["name"] == id){
+				if (miniFav["nums"] == null){
+					miniFav["nums"] = []; 
+				}
+				if (miniFav["nums"].indexOf(num) < 0){
+					miniFav["nums"].push(num);
+				} else { 
+                    alert(id+" "+num+" has already been added");
+                }
+				contained = true; 
+			}
+
+		}
+		//if this is a new course_id
+		if (!contained) {
+			favs.push({
+				"name" : id,
+				"nums" : [num],
+			});
+		}
+		AsyncStorage.setItem("favs",JSON.stringify(favs));
+
+		//reset the fav database, uncomment when you need to reset
+		//AsyncStorage.setItem("favs",JSON.stringify([]));
+	});
   }
 
   // displays courses as an accordion but closed
@@ -84,7 +145,11 @@ export default class CourseLister extends React.Component {
               <Animatable.Text style={{color: 'white',}} >Lecture Room: {room}</Animatable.Text> :
               <Animatable.Text style={{color: 'white',}} >Lecture Room: TBA</Animatable.Text> 
             }
-            <Text>{'\n'}</Text>
+			<TouchableHighlight onPress={()=>{ me.addFavs(course.course_id + " -- "+ course.offerings[j].course_num); this.props.children.value="Added to Favorites" }} backgroundColor="rgba(255,255,255,0.6)" style={{alignItems: 'center', backgroundColor: '#DDDDDD', padding: 10, }} underlayColor='#00BFFF' >
+				<Text > Add to Favorites </Text> 
+			</TouchableHighlight>
+
+            <Text >{'\n'}</Text>
           </Animatable.View>
         );
     }
@@ -97,6 +162,7 @@ export default class CourseLister extends React.Component {
       return this.renderLoadingView();
     }
     return (
+		<View>
           <ScrollView style={{padding: 10}}>
               <Accordion style={styles.strongShadow}
                 activeSection={this.state.activeSection}
@@ -105,8 +171,10 @@ export default class CourseLister extends React.Component {
                 renderContent={this._renderContent}
                 duration={100}
                 onChange={this._setSection.bind(this)}
+                easing="easeOutCubic"
               />
           </ScrollView>
+		</View>
     );
   }
   // show loading view while data is being loaded
@@ -123,3 +191,4 @@ export default class CourseLister extends React.Component {
     );
   }
 }
+

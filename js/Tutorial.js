@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button, Icon} from 'react-native-elements';
 
 // import classes for modal
 import Modal from 'react-native-modalbox';
@@ -8,7 +9,6 @@ import * as styles from './styles.js';
 import {
   Text,
   View,
-  Button,
   StyleSheet,
   Image,
   ScrollView,
@@ -19,9 +19,12 @@ import {
 var screen = Dimensions.get('window');
 
 export default class Tutorial extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation})=> ({
     title: <Text color='white'>Tutorial</Text>,
-  }
+    headerLeft: <Button icon={{name: 'menu', size: 25 }}
+       backgroundColor='rgba(0,0,0,0)'
+       onPress = {()=> navigation.navigate('DrawerOpen')}/>
+  });
   constructor() {
     super();
     this.state = {
