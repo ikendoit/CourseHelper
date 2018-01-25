@@ -39,6 +39,10 @@ export default class Favourites extends React.Component {
 					name : string course_id 
 					nums : [] nums
 			*/
+			//if favs object does not exist
+			if (value == null || value == "null") {
+				this.setState({shows: "No Data"});
+			}
 			let favs = JSON.parse(value);
 
 			//list of courses from favs (containing all newly loaded infos)
@@ -187,7 +191,16 @@ export default class Favourites extends React.Component {
 	  if (!this.state.shows) {
 	  	return this.renderLoadingView();
 	  } else { 
-      return (
+	  	if (this.state.shows == "No Data" || this.state.shows == ""){
+			return (
+				<View> 
+					<Text> Welcome to the Favorite section {"\n"}</Text>
+					<Text> Please go to 'Department' section and start favoriting courses </Text>
+				</View>
+			);
+		}
+		
+        return (
 			<ScrollView style={{padding: 10}}>
                 <Accordion style={styles.strongShadow}
                   activeSection={this.state.activeSection}
@@ -200,7 +213,7 @@ export default class Favourites extends React.Component {
                 />
 
 			</ScrollView>
-      );
+      	);
 	  }
     }
 }

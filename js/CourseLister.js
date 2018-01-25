@@ -145,8 +145,8 @@ export default class CourseLister extends React.Component {
               <Animatable.Text style={{color: 'white',}} >Lecture Room: {room}</Animatable.Text> :
               <Animatable.Text style={{color: 'white',}} >Lecture Room: TBA</Animatable.Text> 
             }
-			<TouchableHighlight onPress={()=>{ me.addFavs(course.course_id + " -- "+ course.offerings[j].course_num); this.props.children.value="Added to Favorites" }} backgroundColor="rgba(255,255,255,0.6)" style={{alignItems: 'center', backgroundColor: '#DDDDDD', padding: 10, }} underlayColor='#00BFFF' >
-				<Text > Add to Favorites </Text> 
+			<TouchableHighlight onPress={()=>{ me.addFavs(course.course_id + " -- "+ course.offerings[j].course_num); }} backgroundColor="rgba(255,255,255,0.6)" style={{alignItems: 'center', backgroundColor: '#DDDDDD', padding: 10, }} underlayColor='#00BFFF' >
+				<Text> Add to Favorites </Text> 
 			</TouchableHighlight>
 
             <Text >{'\n'}</Text>
