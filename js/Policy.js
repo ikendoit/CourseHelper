@@ -7,7 +7,7 @@ export default class Policy extends React.Component {
 	//nav bar
     static navigationOptions = ({navigation, screenProps}) => {
         return {
-            headerLeft: <Button icon={{name: 'menu', size: 25 }} backgroundColor='rgba(0,0,0,0)' onPress = {()=> { me.setState({shows: false}); navigation.navigate('DrawerOpen');}}/>,
+            headerLeft: <Button icon={{name: 'menu', size: 25 }} backgroundColor='rgba(0,0,0,0)' onPress = {()=> { navigation.navigate('DrawerOpen');}}/>,
             headerTitle : "Policy and Copyrights",
 			title: "Policy and Copyrights",
         }

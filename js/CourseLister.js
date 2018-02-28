@@ -24,15 +24,28 @@ export default class CourseLister extends React.Component {
 
   static me = null;
   static navigationOptions = ({navigation,screenProps}) => {
-	return { 
-		headerStyle: {
-		  /* F15A22 - orange */
-		  backgroundColor: '#3f91f5'
-		},
-	//	headerLeft : <Button style="margin-left:-30px" backgroundColor='rgba(200,0,0,0)' icon={{name: "chevron-left", size:30}} onPress={()=>navigation.goBack()} />,
-		headerTitle: `${navigation.state.params.dept}`,
-		title: "Courses",
-		headerTintColor: 'white',
+  	if (navigation.state.params){
+		return { 
+			headerStyle: {
+			  /* F15A22 - orange */
+			  backgroundColor: '#3f91f5'
+			},
+		//	headerLeft : <Button style="margin-left:-30px" backgroundColor='rgba(200,0,0,0)' icon={{name: "chevron-left", size:30}} onPress={()=>navigation.goBack()} />,
+			headerTitle: `${navigation.state.params.dept}`,
+			title: "Courses",
+			headerTintColor: 'white',
+		}
+	} else {
+		return {
+			headerStyle: {
+			  /* F15A22 - orange */
+			  backgroundColor: '#3f91f5'
+			},
+		//	headerLeft : <Button style="margin-left:-30px" backgroundColor='rgba(200,0,0,0)' icon={{name: "chevron-left", size:30}} onPress={()=>navigation.goBack()} />,
+			headerTitle: "Available Courses",
+			title: "Courses",
+			headerTintColor: 'white',
+		}
 	}
   };
   
@@ -41,17 +54,49 @@ export default class CourseLister extends React.Component {
     this.state = {
       loaded: false,
       activeSection: false,
+	  data: [], 
+	  title: "Available Courses"
     };
   }  
+    //**********************Component initialization
+	// set navigation params for static context switching
+    _setNavigationParams(){
+        let opened = this.state.opened;
+
+		let textInput = <TextInput placeholder="search" autoFocus={true} style={{backgroundColor: "white", width: 200}} onChangeText={(text)=>this.textSearch(text)} />; 
+
+		let closeButton = <Button icon={{name: 'clear', size: 25 }} backgroundColor='rgba(0,0,0,0)' onPress = {()=> {this.onButtonPress()}}/>;
+
+		let searchButton = <Button icon={{name: 'search', size: 25 }} backgroundColor='rgba(0,0,0,0)' onPress = {()=> this.onButtonPress()}/>;
+
+        this.props.navigation.setParams({
+            opened,
+			textInput, 
+			closeButton, 
+			searchButton,
+        });
+    }
+
 
   // if the view has loaded fully, update state
   componentDidMount() {
-    this.setState({
-      loaded: true,
-      //load datas from departments JS
-      data: this.props.navigation.state.params.coursesData,
-      title: this.props.navigation.state.params.dept,
-    });
+	//if (this.props.navigation.state.params){
+		this.setState({
+		  loaded: true,
+		  //load datas from departments JS
+		  data: this.props.navigation.state.params.coursesData,
+		  title: this.props.navigation.state.params.dept,
+		});
+	//} else {
+	//	console.log("this should be running*************");
+	//	AsyncStorage.getItem("avail").then((avail)=>{
+	//		data = JSON.parse(avail);
+	//		this.setState({
+	//			loaded: true,
+	//			data, 
+	//		});
+	//	});
+	//}
   }
 
   componentWillMount(){
@@ -117,6 +162,11 @@ export default class CourseLister extends React.Component {
 
   // displays courses as an accordion but closed
   _renderHeader(course, i, isActive) {
+  	if (!course.offerings) {
+		return (
+			<View/>
+		);
+	}
     return (
       <Animatable.View transition="backgroundColor" duration={500} style={[{ padding: 10, }, isActive ? styles.active : styles.inactive]}>
         <Text style={[isActive ? [styles.activeText, styles.headerActiveText]: [styles.inactiveText, styles.headerInactiveText]]}>{course.course_id} - {course.offerings[0].title} </Text>

@@ -46,12 +46,12 @@ export default class Introduction extends React.Component {
 					});
 	
 					if (data.length > 2) {
-						this.setState({news});
 						AsyncStorage.setItem("data",JSON.stringify(data));
-						AsyncStorage.setItem("news",JSON.stringify(news));
 					}
+					AsyncStorage.setItem("news",JSON.stringify(news));
 					this.setState({
-						loaded : true
+						loaded : true,
+						news
 					});
 				});
 		

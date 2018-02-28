@@ -16,6 +16,7 @@ import { Button, Icon, SearchBar} from 'react-native-elements';
 // import classes for different screens
 import CourseLister from './CourseLister';
 import DepartmentLister from './DepartmentLister';
+//import AvailCourses from './AvailableCourses';
 import Tutorial from './Tutorial';
 import Introduction from './NewsFeed';
 import Favourites from './Favourites';
@@ -70,6 +71,17 @@ const Browse = StackNavigator({
     navigationOptions: searchButton
   }
 });
+
+//const BrowseAvail = StackNavigator({
+//  AvailableCourses: {
+//    screen: CourseLister,
+//    navigationOptions: searchButton
+//  },
+//  Courses: {
+//    screen: CourseLister,
+//    navigationOptions: searchButton
+//  }
+//});
 const Help = StackNavigator({
   Tutorial: {
     screen: Tutorial,
@@ -90,8 +102,11 @@ const Menu = DrawerNavigator({
     screen: Saved,
   },
   Departments: {
-    screen: Browse
+    screen: Browse,
   },
+  //AvailableCourses: {
+  //  screen: BrowseAvail,
+  //},
   Tutorial: {
     screen: Help,
   },
